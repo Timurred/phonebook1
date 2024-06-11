@@ -55,7 +55,7 @@ def del_data():
         for row in reader:
             lines.append(row)
         lines = [row for row in lines if memderName not in row]
-        with open('phonedir1.csv', 'w+' , encoding='utf-8') as writef:
+        with open('phonedir1.csv', 'w' , encoding='utf-8') as writef:
             writer = csv.writer(writef)
             writer.writerows(lines)
             print(f"'{memderName}' удален")
