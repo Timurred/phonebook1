@@ -1,6 +1,8 @@
-from data_ceate import name_data, surname_data, phone_data, address_data
 import csv
+from data_ceate import name_data, surname_data, phone_data, address_data
+
 def input_data():
+    
     name = name_data()
     surname = surname_data()
     phone = phone_data()
@@ -9,16 +11,16 @@ def input_data():
     f"1 Вариант: \n"
     f"{name}\n{surname}\n{phone}\n{address} \n\n"
     f"2 Вариант: \n"
-    f"{name};{surname};{phone};{address}\n"
+    f";{name};{surname};{phone};{address}\n"
     f"Выберите вариант: "))
     
-    while var!=1 and var !=2 and var !=4: 
+    while var!=1 and var !=2 : 
         print("неправильный ввод")
         var = int(input('Введите число '))
     
     if var == 1:
         with open('phonedir1.csv', 'a' , encoding='utf-8') as f:
-            f.write(f"{name}\n{surname}\n{phone}\n{address} \n\n")
+            f.write(f"\n{name}\n{surname}\n{phone}\n{address} \n\n")
 
     elif var == 2:
         with open('phonedir2.csv', 'a' , encoding='utf-8') as f:
@@ -44,29 +46,16 @@ def print_data():
         phonedir2 = f.readlines()
         print(*phonedir2)
 
+def del_data():
+    memderName = input("введите то, что нужно удалить: ")
 
-
-def edit_record ( phonedir1 ,old_value, new_value):
- with open('phonedir1.csv', 'r', newline='') as f:
-    reader = csv.reader(f)
-
- with open('phonedir1.csv', 'w', newline='') as f:
-    writer =  csv.writer(f)
-
- for row in reader:
-    if row0 == old_value:
-        row0 = new_value
- else:
-    writer.writerow(row)
-
-    return
- with open('phonedir2.csv', 'r', newline='') as f:
-    reader = csv.reader(f)
-
- with open('phonedir2.csv', 'w', newline='') as f:
-    writer =  csv.writer(f)
-
-            
-            
-                
-           
+    lines = []
+    with open('phonedir1.csv', 'r' , encoding='utf-8') as readf:
+        reader = csv.reader(readf)
+        for row in reader:
+            lines.append(row)
+        lines = [row for row in lines if memderName not in row]
+        with open('phonedir1.csv', 'w+' , encoding='utf-8') as writef:
+            writer = csv.writer(writef)
+            writer.writerows(lines)
+            print(f"'{memderName}' удален")

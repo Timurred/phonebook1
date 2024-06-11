@@ -1,3 +1,4 @@
+
 def name_data():
     name = input("Введите ваше имя:")
     print('Очень красивое имя')
@@ -17,3 +18,4 @@ def phone_data():
 def address_data():
     address = input("Введите ваш адрес:")
     return address
+
